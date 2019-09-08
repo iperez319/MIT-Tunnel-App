@@ -1,0 +1,24 @@
+{
+  "name": "tunnelapp",
+  "private": true,
+  "version": "0.0.1",
+  "description": "tunnelapp",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watch",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@ionic-native/device-orientation": "^4.20.0",
+    "@ionic/core": "^4.9.0"
+  },
+  "devDependencies": {
+    "@stencil/core": "^1.3.3"
+  }
+}
