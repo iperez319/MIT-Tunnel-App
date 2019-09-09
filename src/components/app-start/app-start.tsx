@@ -17,15 +17,19 @@ export class AppStart{
     }
     componentDidLoad(){
         window.addEventListener('deviceorientation', function(event) {
-            var alpha;
-    
-            // Use Webkit heading for iOS
-            alpha = event.webkitCompassHeading;
-            if (alpha < 0) { alpha += 360; }
-            if (alpha > 360) { alpha -= 360; }
-    
-            // Calculated heading
-            alert (alpha);
+                var alpha    = event.alpha; //z axis rotation [0,360)
+                var beta     = event.beta; //x axis rotation [-180, 180]
+                var gamma    = event.gamma; //y axis rotation [-90, 90]      //Check if absolute values have been sent
+                if (typeof event.webkitCompassHeading !== "undefined") {
+                  alpha = event.webkitCompassHeading; //iOS non-standard
+                  var heading = alpha
+                  document.getElementById("heading").innerHTML = heading.toFixed([0]);
+                }
+                else {
+                  alert("Your device is reporting relative alpha values, so this compass won't point north :(");
+                  var heading = 360 - alpha; //heading [0, 360)
+                  document.getElementById("heading").innerHTML = heading.toFixed([0]);
+                }
         });
     }
     render(){
@@ -55,7 +59,7 @@ export class AppStart{
                     </ion-toolbar>
                 </ion-header>
                     <div style={{'paddingTop': '40px'}}></div>
-                    
+                    <p id="heading">Test</p>
                     <ion-item>
                         <ion-label position="stacked">Current Building</ion-label>
                         <ion-input onIonInput={this.onCurrentLocationChange}></ion-input>
