@@ -10,6 +10,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 export namespace Components {
   interface AppHome {}
+  interface AppPreferences {}
   interface AppProfile {
     'name': string;
   }
@@ -28,6 +29,12 @@ declare global {
   var HTMLAppHomeElement: {
     prototype: HTMLAppHomeElement;
     new (): HTMLAppHomeElement;
+  };
+
+  interface HTMLAppPreferencesElement extends Components.AppPreferences, HTMLStencilElement {}
+  var HTMLAppPreferencesElement: {
+    prototype: HTMLAppPreferencesElement;
+    new (): HTMLAppPreferencesElement;
   };
 
   interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
@@ -55,6 +62,7 @@ declare global {
   };
   interface HTMLElementTagNameMap {
     'app-home': HTMLAppHomeElement;
+    'app-preferences': HTMLAppPreferencesElement;
     'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
     'app-route': HTMLAppRouteElement;
@@ -64,6 +72,7 @@ declare global {
 
 declare namespace LocalJSX {
   interface AppHome extends JSXBase.HTMLAttributes<HTMLAppHomeElement> {}
+  interface AppPreferences extends JSXBase.HTMLAttributes<HTMLAppPreferencesElement> {}
   interface AppProfile extends JSXBase.HTMLAttributes<HTMLAppProfileElement> {
     'name'?: string;
   }
@@ -76,6 +85,7 @@ declare namespace LocalJSX {
 
   interface IntrinsicElements {
     'app-home': AppHome;
+    'app-preferences': AppPreferences;
     'app-profile': AppProfile;
     'app-root': AppRoot;
     'app-route': AppRoute;
